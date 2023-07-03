@@ -1,7 +1,24 @@
 import React, { useEffect, useState } from "react";
-import TitleCard from "./components/TitleCard";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Error from "./pages/error"
+import Shop from "./pages/shop"
+import Footer from "./components/Footer";
+import styled from "styled-components";
 
 const url = 'https://api.escuelajs.co/api/v1/products';
+
+const Page = styled.div`
+  font-family: 'Lato', sans-serif;
+`
+const Nav = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+`
+const NavItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 
 function App() {
@@ -25,9 +42,22 @@ function App() {
     })}
 
   return (
-    <div>
-      {data.map(e => <TitleCard key = {e} title = {e.title} price = {e.price}/>)}  
-    </div>
+    <Page>
+      <div>LOGO</div>
+    <Nav>
+      <NavItem>Home</NavItem>
+      <NavItem>Shop</NavItem>
+      <NavItem>About</NavItem>
+    </Nav>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path = "/" element={<Shop data ={data} />}/>
+        <Route path = "*" element={<Error/>}/>
+      </Routes>
+    </BrowserRouter>
+    <Footer/>
+    </Page>
   );
 }
 
