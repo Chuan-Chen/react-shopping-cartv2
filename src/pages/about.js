@@ -9,7 +9,7 @@ export default function about(){
 
     return (
         <Page>
-
+            About
         </Page>
     )
 }
