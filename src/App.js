@@ -6,11 +6,13 @@ import Home from "./pages/home"
 import About from "./pages/about"
 import Footer from "./components/Footer";
 import styled from "styled-components";
+import Hamburger from "./components/Hamburger";
 
 const url = 'https://api.escuelajs.co/api/v1/products';
 
 const Page = styled.div`
   font-family: 'Lato', sans-serif;
+  background-color: #FFEED6;
 `
 
 const Logo = styled.div`
@@ -28,7 +30,8 @@ const Header = styled.div`
 
 const NavBar = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr .5fr;
+  gap: 10px;
 `
 const NavItem = styled.div`
   display: flex;
@@ -38,8 +41,10 @@ const NavItem = styled.div`
   height: 45px;
   width: 100%;
   cursor: pointer;
+  border: 2px solid;
+  
   &:hover{
-    background-color: #3577B4;
+    background-color: #FFEEDF;
   };
 
 `
@@ -77,6 +82,7 @@ function App() {
           <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Home</NavItem></Link>
           <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Shop</NavItem></Link>
           <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>About</NavItem></Link>
+          <Hamburger></Hamburger>
         </NavBar>
       </Header>
 
@@ -97,3 +103,12 @@ function App() {
 }
 
 export default App;
+
+
+/**
+ * #C1DBB3 tea green
+ * #FFEED6 papaya whip
+ * 84a59d cambridge blue
+ * 
+ * 
+ */
