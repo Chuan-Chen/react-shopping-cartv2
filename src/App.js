@@ -7,13 +7,14 @@ import About from "./pages/about"
 import Footer from "./components/Footer";
 import styled from "styled-components";
 import Hamburger from "./components/Hamburger";
-import {ReactComponent as LogoIcon} from "./Icons/logo1.svg"
+import LogoIcon from "./Icons/logo1.svg"
 
 const url = 'https://api.escuelajs.co/api/v1/products';
 
 const Page = styled.div`
   font-family: 'Lato', sans-serif;
-  background-color: #ffffff;
+  background-color: #FFFFFE;
+
 `
 
 const Logo = styled.div`
@@ -40,7 +41,7 @@ const NavItem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 4px;
   height: 45px;
   width: 100%;
   cursor: pointer;
@@ -89,11 +90,14 @@ function App() {
     })}
 
   return (
+  
     <Page>
       <Header>
+        <Link to = "/home">
         <Logo>
-          <LogoIcon style = {{height: '1.5rem', width: 'auto', marginLeft: '1rem'}}></LogoIcon>
+          <img src = {LogoIcon} style = {{height: '1.5rem', width: 'auto', marginLeft: '1rem'}} alt = 'logo'></img>
         </Logo>
+        </Link>
         <NavBar>
           <div></div>
           <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Home</NavItem></Link>
@@ -117,6 +121,7 @@ function App() {
     </PageBody>
     <Footer/>
     </Page>
+  
   );
 }
 
