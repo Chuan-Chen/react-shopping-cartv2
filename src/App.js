@@ -7,18 +7,20 @@ import About from "./pages/about"
 import Footer from "./components/Footer";
 import styled from "styled-components";
 import Hamburger from "./components/Hamburger";
+import {ReactComponent as LogoIcon} from "./Icons/logo1.svg"
 
 const url = 'https://api.escuelajs.co/api/v1/products';
 
 const Page = styled.div`
   font-family: 'Lato', sans-serif;
-  background-color: #FFEED6;
+  background-color: #ffffff;
 `
 
 const Logo = styled.div`
-  height: 80px;
+  height: 4rem;
   width: 100%;
-  
+  display: grid;
+  align-items: center;
 `
 
 const Header = styled.div`
@@ -26,11 +28,12 @@ const Header = styled.div`
   grid-template-columns: 2fr 1fr;
   justify-content: center;
   align-items: center;
+  border-bottom: 1.5px solid #edede9;
 `
 
 const NavBar = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr .5fr;
+  grid-template-columns: 1fr .5fr .5fr .5fr .2fr .5fr;
   gap: 10px;
 `
 const NavItem = styled.div`
@@ -41,17 +44,28 @@ const NavItem = styled.div`
   height: 45px;
   width: 100%;
   cursor: pointer;
-  border: 2px solid;
+  font-weight: bold;
+  user-select: none;
   
   &:hover{
-    background-color: #FFEEDF;
-  };
+    color: #2a9d8f;
+    border: 1px solid #2a9d8f
+  }
+  &:active{
+    color: #228a7d;
+  }
 
 `
 
 const PageBody = styled.div`
   height: 100%;
   width: 100%;
+`
+
+const Divider = styled.div`
+  background-color: #edede9;
+  width: 2px;  
+  justify-self: center;
 `
 
 function App() {
@@ -77,11 +91,15 @@ function App() {
   return (
     <Page>
       <Header>
-        <Logo></Logo>
+        <Logo>
+          <LogoIcon style = {{height: '1.5rem', width: 'auto', marginLeft: '1rem'}}></LogoIcon>
+        </Logo>
         <NavBar>
+          <div></div>
           <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Home</NavItem></Link>
           <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Shop</NavItem></Link>
           <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>About</NavItem></Link>
+          <Divider></Divider>
           <Hamburger></Hamburger>
         </NavBar>
       </Header>
