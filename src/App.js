@@ -77,6 +77,12 @@ function App() {
     fetchData();
   }, []); 
 
+
+  const HamClick = ({func}) => {
+    console.log('hamclick')
+  }
+
+
   const fetchData = ()=>{
     fetch(url).then((res) => {
         res.json().then(
@@ -99,12 +105,12 @@ function App() {
         </Logo>
         </Link>
         <NavBar>
-          <div></div>
+          <button onClick={HamClick}></button>
           <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Home</NavItem></Link>
           <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Shop</NavItem></Link>
           <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>About</NavItem></Link>
           <Divider></Divider>
-          <Hamburger></Hamburger>
+          <Hamburger clickManager = {HamClick}></Hamburger>
         </NavBar>
       </Header>
 
