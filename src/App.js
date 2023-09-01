@@ -6,7 +6,7 @@ import Home from "./pages/home"
 import About from "./pages/about"
 import Footer from "./components/Footer";
 import styled from "styled-components";
-import Hamburger from "./components/Hamburger";
+import ShoppingCart from "./components/ShoppingCart";
 import LogoIcon from "./Icons/logo1.svg"
 
 const url = 'https://api.escuelajs.co/api/v1/products';
@@ -15,6 +15,25 @@ const Page = styled.div`
   font-family: 'Lato', sans-serif;
   background-color: #FFFFFE;
 
+`
+
+const ShoppingSideBar = styled.div`
+position: fixed;
+z-index: 2;
+height: 100vh;
+width 25rem;
+background-color: #90adbb;
+right: 0px;
+display: ${props => (props.display ? "block" : "none")};
+`
+
+const ShoppingBarToggle = styled.div`
+position: fixed;
+z-index; 1rem;
+height: 100vh;
+width: 100vw;
+display: ${props => (props.display ? "block" : "none")};
+backdrop-filter: blur(10px);
 `
 
 const Logo = styled.div`
@@ -71,15 +90,19 @@ const Divider = styled.div`
 
 function App() {
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+  const [display, setDisplay] = useState(false);
+
+
+
 
   useEffect(() => {
     fetchData();
   }, []); 
 
 
-  const HamClick = ({func}) => {
-    console.log('hamclick')
+  const displayHandler = () => {
+    setDisplay(!display);
   }
 
 
@@ -98,6 +121,10 @@ function App() {
   return (
   
     <Page>
+      <ShoppingBarToggle display={display} onClick={displayHandler}></ShoppingBarToggle>
+      <ShoppingSideBar display={display}>
+
+      </ShoppingSideBar>
       <Header>
         <Link to = "/home">
         <Logo>
@@ -105,12 +132,11 @@ function App() {
         </Logo>
         </Link>
         <NavBar>
-          <button onClick={HamClick}></button>
           <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Home</NavItem></Link>
           <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Shop</NavItem></Link>
           <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>About</NavItem></Link>
           <Divider></Divider>
-          <Hamburger clickManager = {HamClick}></Hamburger>
+          <ShoppingCart clickManager = {displayHandler}></ShoppingCart>
         </NavBar>
       </Header>
 

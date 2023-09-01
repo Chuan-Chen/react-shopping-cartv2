@@ -2,8 +2,7 @@ import styled from "styled-components";
 import {ReactComponent as Ham} from "../Icons/shoppingCart.svg"
 import { useState } from "react"
 
-export default function Hamburger(props) {
-    
+export default function ShoppingCart({clickManager}) {
 
 
     const [counter, setCounter] = useState(0);
@@ -18,7 +17,7 @@ export default function Hamburger(props) {
         }
     }
 
-    props.clickManager(clickHandler);
+    
 
     const Container = styled.div`
         display: grid;
@@ -27,25 +26,31 @@ export default function Hamburger(props) {
 
     const Counter = styled.div`
         position: absolute;
-        top: 1.2rem;
-        right: 3rem;
+        top: .6rem;
+        left: .9rem;
+        font: bold .9em 'Lato', sans-serif;
+        user-select: none;
     `
 
     const ShopButton = styled.div`
-        position: 'absolute';
-        height: 'auto';
+        position: relative;
+        justify-content: center;
+        align-content: center;
+    `
+    
+
+
+/**
+ *         height: 'auto';
         width: 'auto';
         border: 'none';
         background: 'none';
         padding: '0px';
-        justify-content: 'center';
-        align-content: 'center';
-    `
-
+ */
 
     return (
         <Container>
-             <ShopButton onClick= {()=>{console.log('clicked')}}>
+             <ShopButton onClick= {clickManager}>
                 <Ham style = {{height: '2.7rem', width: '2.7rem'}}></Ham>
                 <Counter>{counter}</Counter>
             </ShopButton>
