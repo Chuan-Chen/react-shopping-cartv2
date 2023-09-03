@@ -24,7 +24,7 @@ height: 100vh;
 width 25rem;
 background-color: #90adbb;
 right: 0px;
-display: ${props => (props.display ? "block" : "none")};
+
 `
 
 const ShoppingBarToggle = styled.div`
@@ -32,7 +32,7 @@ position: fixed;
 z-index; 1rem;
 height: 100vh;
 width: 100vw;
-display: ${props => (props.display ? "block" : "none")};
+
 backdrop-filter: blur(10px);
 `
 
@@ -88,6 +88,11 @@ const Divider = styled.div`
   justify-self: center;
 `
 
+const ShoppingCartPage = styled.div`
+  display: ${props => (props.display ? "block" : "none")};
+`
+
+
 function App() {
 
   const [data, setData] = useState([]);
@@ -121,10 +126,12 @@ function App() {
   return (
   
     <Page>
-      <ShoppingBarToggle display={display} onClick={displayHandler}></ShoppingBarToggle>
-      <ShoppingSideBar display={display}>
-
-      </ShoppingSideBar>
+      <ShoppingCartPage display={display}>
+        <ShoppingBarToggle onClick={displayHandler}></ShoppingBarToggle>
+        <ShoppingSideBar>
+          <button></button>
+        </ShoppingSideBar>
+      </ShoppingCartPage>
       <Header>
         <Link to = "/home">
         <Logo>
@@ -132,6 +139,7 @@ function App() {
         </Logo>
         </Link>
         <NavBar>
+          <div></div>
           <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Home</NavItem></Link>
           <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Shop</NavItem></Link>
           <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>About</NavItem></Link>
