@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {ReactComponent as Ham} from "../Icons/shoppingCart.svg"
+import {ReactComponent as ShopIcon} from "../Icons/shoppingCart.svg"
 import { useState } from "react"
 
 export default function ShoppingCart({clickManager}) {
@@ -51,7 +51,7 @@ export default function ShoppingCart({clickManager}) {
     return (
         <Container>
              <ShopButton onClick= {clickManager}>
-                <Ham style = {{height: '2.7rem', width: '2.7rem'}}></Ham>
+                <ShopIcon style = {{height: '2.7rem', width: '2.7rem'}}></ShopIcon>
                 <Counter>{counter}</Counter>
             </ShopButton>
         </Container>    

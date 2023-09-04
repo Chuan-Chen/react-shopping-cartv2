@@ -4,6 +4,7 @@ import Error from "./pages/error"
 import Shop from "./pages/shop"
 import Home from "./pages/home"
 import About from "./pages/about"
+import ShoppingCartPage from "./pages/ShoppingCartPage";
 import Footer from "./components/Footer";
 import styled from "styled-components";
 import ShoppingCart from "./components/ShoppingCart";
@@ -15,25 +16,6 @@ const Page = styled.div`
   font-family: 'Lato', sans-serif;
   background-color: #FFFFFE;
 
-`
-
-const ShoppingSideBar = styled.div`
-position: fixed;
-z-index: 2;
-height: 100vh;
-width 25rem;
-background-color: #90adbb;
-right: 0px;
-
-`
-
-const ShoppingBarToggle = styled.div`
-position: fixed;
-z-index; 1rem;
-height: 100vh;
-width: 100vw;
-
-backdrop-filter: blur(10px);
 `
 
 const Logo = styled.div`
@@ -88,17 +70,11 @@ const Divider = styled.div`
   justify-self: center;
 `
 
-const ShoppingCartPage = styled.div`
-  display: ${props => (props.display ? "block" : "none")};
-`
-
 
 function App() {
 
   const [data, setData] = useState([]);
   const [display, setDisplay] = useState(false);
-
-
 
 
   useEffect(() => {
@@ -126,12 +102,7 @@ function App() {
   return (
   
     <Page>
-      <ShoppingCartPage display={display}>
-        <ShoppingBarToggle onClick={displayHandler}></ShoppingBarToggle>
-        <ShoppingSideBar>
-          <button></button>
-        </ShoppingSideBar>
-      </ShoppingCartPage>
+      <ShoppingCartPage display = {display} displayHandler={displayHandler}></ShoppingCartPage>
       <Header>
         <Link to = "/home">
         <Logo>
