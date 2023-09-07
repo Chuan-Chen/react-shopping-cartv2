@@ -1,25 +1,7 @@
 import styled from "styled-components";
 import {ReactComponent as ShopIcon} from "../Icons/shoppingCart.svg"
-import { useState } from "react"
 
-export default function ShoppingCart({clickManager}) {
-
-
-    const [counter, setCounter] = useState(0);
-
-    const clickHandler = (x=true) =>{
-        if(x){
-            setCounter(counter + 1);
-            x = false;
-        }else{
-            setCounter(counter - 1);
-
-        }
-    }
-
-    
-
-    const Container = styled.div`
+const Container = styled.div`
         display: grid;
 
     `
@@ -37,9 +19,8 @@ export default function ShoppingCart({clickManager}) {
         justify-content: center;
         align-content: center;
     `
-    
 
-
+export default function ShoppingCart({clickManager, cartCounter}) {
 /**
  *         height: 'auto';
         width: 'auto';
@@ -52,7 +33,7 @@ export default function ShoppingCart({clickManager}) {
         <Container>
              <ShopButton onClick= {clickManager}>
                 <ShopIcon style = {{height: '2.7rem', width: '2.7rem'}}></ShopIcon>
-                <Counter>{counter}</Counter>
+                <Counter>{cartCounter}</Counter>
             </ShopButton>
         </Container>    
     )

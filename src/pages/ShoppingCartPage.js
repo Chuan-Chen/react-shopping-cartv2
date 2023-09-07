@@ -2,8 +2,6 @@
 
 import styled from "styled-components";
 
-export default function ShoppingCartPage({display, displayHandler}){
-
 
 const ShoppingSideBar = styled.div`
     position: fixed;
@@ -16,6 +14,7 @@ const ShoppingSideBar = styled.div`
     grid-template-rows: 4fr 1fr;
     justify-items: center;
     align-items; center;
+    overflow: auto;
 `
 
 const ShoppingBarToggle = styled.div`
@@ -34,17 +33,32 @@ const ShoppingXButton = styled.button`
     border: 1px solid;
 `
 
-const ShoppingCartPage = styled.div`
-  display: ${props => (props.display ? "block" : "none")};
+const Page = styled.div`
+  display: ${props => (props.view ? "block" : "none")};
 `
 
+
+export default function ShoppingCartPage({display, displayHandler, cartItems}){
+
+
+
     return (
-    <ShoppingCartPage display={display}>
+    <Page view={display}>
         <ShoppingBarToggle onClick={displayHandler}></ShoppingBarToggle>
             <ShoppingSideBar>
-                <div></div>
+                <div>
+                    {cartItems.map((item, count) => {
+                    return (
+                    <div key = {count++}>
+                        <div>{item[0]}</div>
+                        <div>{item[1]}</div>
+                        <img src = {item[2]} style = {{height: '100px', width: '100px'}}></img>
+                        <div>{item[3]}</div>
+                    </div>
+                    )})}
+                </div>
                 <ShoppingXButton onClick={displayHandler}>X</ShoppingXButton>
             </ShoppingSideBar>
-      </ShoppingCartPage>
+      </Page>
     );
 }
