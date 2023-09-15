@@ -3,7 +3,7 @@ import {ReactComponent as ShopIcon} from "../Icons/shoppingCart.svg"
 
 const Container = styled.div`
         display: grid;
-
+        
     `
 
     const Counter = styled.div`
@@ -18,6 +18,7 @@ const Container = styled.div`
         position: relative;
         justify-content: center;
         align-content: center;
+        cursor: pointer;
     `
 
 export default function ShoppingCart({clickManager, cartCounter}) {

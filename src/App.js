@@ -14,7 +14,7 @@ const url = 'https://fakestoreapi.com/products';
 
 const Page = styled.div`
   font-family: 'Lato', sans-serif;
-  background-color: #FFFFFE;
+  background-color: #f2f2f4;
 
 `
 
@@ -30,7 +30,7 @@ const Header = styled.div`
   grid-template-columns: 2fr 1fr;
   justify-content: center;
   align-items: center;
-  border-bottom: 1.5px solid #edede9;
+  border-bottom: 1px solid #babab6;
 `
 
 const NavBar = styled.div`
@@ -48,7 +48,7 @@ const NavItem = styled.div`
   cursor: pointer;
   font-weight: bold;
   user-select: none;
-  
+  //box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
   &:hover{
     color: #2a9d8f;
     border: 1px solid #2a9d8f
@@ -65,7 +65,7 @@ const PageBody = styled.div`
 `
 
 const Divider = styled.div`
-  background-color: #edede9;
+  background-color: #babab6;
   width: 2px;  
   justify-self: center;
 `
@@ -77,6 +77,7 @@ function App() {
   const [display, setDisplay] = useState(false);
   const [cartCounter, setCartCounter] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [total, setTotal] = useState(0);
 
   const incrementCartCounter = () => {
     setCartCounter(cartCounter + 1);
@@ -93,11 +94,13 @@ function App() {
         a[i][3] += 1;
         setCartItems(a);
         incrementCartCounter();
+        setTotal(getTotal(a));
         return;
       }
     }
     setCartItems([...cartItems, Item])
     incrementCartCounter();
+    setTotal(getTotal(cartItems));
   }
 
   const subItem = (Item) => {
@@ -108,31 +111,37 @@ function App() {
           a[i][3] -= 1;
           setCartItems(a);
           decrementCartCounter();
+          setTotal(getTotal(a));
           return;
-        }
-        a = []
-        for(let j = 0; j < cartItems.length-1; j++){
-          if(Item[0] !== cartItems[j][0]){
-            a[j].push(cartItems[j])
-            setCartItems(a);
-          }
         }
         return;
       }
     }
     setCartItems([...cartItems, Item])
+    setTotal(getTotal(cartItems));
     decrementCartCounter();
+  }
+
+  const getTotal = (array) => {
+    let sum = 0;
+    for(let i = 0; i < array.length; i++){
+      console.log(array[i][1] , array[i][3])
+      sum += array[i][1] * array[i][3]; 
+    }
+    return sum.toFixed(2);
   }
 
   useEffect(() => {
     fetchData();
-  }, []); 
+    setTotal(getTotal(cartItems));
+  }, [cartItems]); 
 
 
   const displayHandler = () => {
     setDisplay(!display);
   }
 
+  
 
   const fetchData = ()=>{
     try{
@@ -154,7 +163,7 @@ function App() {
   return (
   
     <Page>
-      <ShoppingCartPage display = {display} displayHandler={displayHandler} cartItems = {cartItems}></ShoppingCartPage>
+      <ShoppingCartPage display = {display} displayHandler={displayHandler} cartItems = {cartItems} total = {total} addItem = {addItem} subItem = {subItem}></ShoppingCartPage>
       <Header>
         <Link to = "/home">
         <Logo>
