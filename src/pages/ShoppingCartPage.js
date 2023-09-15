@@ -38,7 +38,10 @@ const Page = styled.div`
 
 const ShoppingList = styled.div`
     display: grid;
+    overflow: hidden;
     grid-auto-flow; column;
+    justify-items: center;
+    align-items: center;
     gap: 10px;
     overflow: auto;
 `

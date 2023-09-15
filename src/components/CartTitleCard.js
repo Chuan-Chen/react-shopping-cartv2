@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const Item = styled.div`
     background-color: white;
-    
+    width: 60%;
 `
 
 const Button = styled.div`
@@ -14,6 +14,7 @@ const Button = styled.div`
     justify-items: center;
     align-items: center;
     background-color: grey;
+
 `
 
 const Bottom = styled.div`

@@ -3,15 +3,18 @@ import {ReactComponent as ShopIcon} from "../Icons/shoppingCart.svg"
 
 const Container = styled.div`
         display: grid;
-        
+        justify-items: center;
     `
 
     const Counter = styled.div`
         position: absolute;
-        top: .6rem;
-        left: .9rem;
+        height: 100%;
+        width: 100%;
         font: bold .9em 'Lato', sans-serif;
         user-select: none;
+
+
+
     `
 
     const ShopButton = styled.div`

@@ -44,12 +44,19 @@ const Divider = styled.div`
     background-color: #babab6;
 
 `
+const HomeLogo = styled.img`
+    align-self: end;
+    border-radius: 4px;
+    height: auto; 
+    width: 40vw;
+    box-shadow: 0px 15px 35px -5px rgba(144, 173, 187, 0.49);
+`
 
 export default function home(){
 
     return (
         <Page>
-            <img src = {Logo} style = {{alignSelf: 'end'}} alt = "homepage logo"></img>
+            <HomeLogo src = {Logo} alt = "homepage logo"></HomeLogo>
             <Divider></Divider>
             <Link to = "/shop" style = {{display: 'grid', height: '100%', width: '100%', textDecoration: 'none'}}><ExploreButton>Explore</ExploreButton></Link>
         </Page>

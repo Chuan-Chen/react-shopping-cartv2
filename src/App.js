@@ -176,7 +176,7 @@ function App() {
           <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Shop</NavItem></Link>
           <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>About</NavItem></Link>
           <Divider></Divider>
-          <ShoppingCart cartCounter = {cartCounter} clickManager = {displayHandler} ></ShoppingCart>
+          <ShoppingCart cartCounter = {cartCounter} clickManager = {displayHandler}></ShoppingCart>
         </NavBar>
       </Header>
 
