@@ -3,8 +3,11 @@ import styled from "styled-components"
 
 const Item = styled.div`
     background-color: white;
-    width: 60%;
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
 `
+
 
 const Button = styled.div`
     height: 20px;

@@ -6,10 +6,10 @@ const ShoppingSideBar = styled.div`
     z-index: 2;
     height: 100vh;
     width 25rem;
-    background-color: #878999;
+    background-color: #1e1e1e;
     right: 0px;
     display: grid;
-    grid-template-rows: 4fr 1fr;
+    grid-template-rows: 4fr 1fr 1fr;
     justify-items: center;
     align-items; center;
     overflow: auto;
@@ -63,7 +63,7 @@ export default function ShoppingCartPage({display, displayHandler, cartItems, to
                     })}
                 </ShoppingList>
                 <ShoppingXButton onClick={displayHandler}>X</ShoppingXButton>
-                <div>Total: ${total}</div>
+                <div style = {{color: 'white'}}>Total: ${total}</div>
             </ShoppingSideBar>
       </Page>
     );

@@ -8,13 +8,10 @@ const Container = styled.div`
 
     const Counter = styled.div`
         position: absolute;
-        height: 100%;
-        width: 100%;
+        top: .6rem;
+        left: .9rem;
         font: bold .9em 'Lato', sans-serif;
         user-select: none;
-
-
-
     `
 
     const ShopButton = styled.div`
