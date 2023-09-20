@@ -6,18 +6,18 @@ const ShoppingSideBar = styled.div`
     z-index: 2;
     height: 100vh;
     width 25rem;
-    background-color: #1e1e1e;
+    background-color: #f3f2f4;
     right: 0px;
     display: grid;
-    grid-template-rows: 4fr 1fr 1fr;
+    grid-template-rows: .5fr 6fr .5fr 1fr;
     justify-items: center;
     align-items; center;
-    overflow: auto;
+    border: 1px solid black;
 `
 
 const ShoppingBarToggle = styled.div`
     position: fixed;
-    z-index; 1rem;
+    z-index: 1;
     height: 100vh;
     width: 100vw;
     backdrop-filter: blur(10px);
@@ -27,8 +27,19 @@ const ShoppingXButton = styled.button`
     background: white;
     height: 2rem;
     width: 2rem;
-    border-radius: 4px;
     border: 1px solid;
+    margin: 1rem;
+    justify-self: end;
+    align-self: start;
+    user-select: none;
+    cursor: pointer;
+    transition: background-color 0.3s linear;
+    &:hover{
+        box-shadow: 0px 15px 35px -5px rgba(23, 53, 87, 0.59);
+        background: #1f202a;
+        color: white;
+        text-shadow: 0px 0px 10px white;
+    }
 `
 
 const Page = styled.div`
@@ -38,12 +49,30 @@ const Page = styled.div`
 
 const ShoppingList = styled.div`
     display: grid;
-    overflow: hidden;
+    overflow-y: scroll;
     grid-auto-flow; column;
     justify-items: center;
     align-items: center;
-    gap: 10px;
-    overflow: auto;
+    gap: 30px;
+    border-radius: 5px;
+`
+
+const CheckOutBtn = styled.div`
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    user-select: none;
+    cursor: pointer;
+    border: 1px solid black;
+    height: 2rem;
+    width: 100px;
+    transition: background-color 0.3s linear;
+    &:hover{
+        box-shadow: 0px 15px 35px -5px rgba(23, 53, 87, 0.59);
+        background: #1f202a;
+        color: white;
+        text-shadow: 0px 0px 10px white;
+    }
 `
 
 export default function ShoppingCartPage({display, displayHandler, cartItems, total, addItem, subItem}){
@@ -51,6 +80,7 @@ export default function ShoppingCartPage({display, displayHandler, cartItems, to
     <Page view={display}>
         <ShoppingBarToggle onClick={displayHandler}></ShoppingBarToggle>
             <ShoppingSideBar>
+                <ShoppingXButton onClick={displayHandler}>X</ShoppingXButton>
                 <ShoppingList>
                     {
                     cartItems.map((item, count) => {
@@ -62,8 +92,8 @@ export default function ShoppingCartPage({display, displayHandler, cartItems, to
                     return <></>
                     })}
                 </ShoppingList>
-                <ShoppingXButton onClick={displayHandler}>X</ShoppingXButton>
-                <div style = {{color: 'white'}}>Total: ${total}</div>
+                <div style = {{color: '#1e1e1e', justifySelf: 'center', alignSelf: 'center'}}>Total: ${total}</div>
+                <CheckOutBtn>Checkout</CheckOutBtn>
             </ShoppingSideBar>
       </Page>
     );

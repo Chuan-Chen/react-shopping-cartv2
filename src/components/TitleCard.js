@@ -2,12 +2,18 @@ import styled from "styled-components"
 
 const Title = styled.div`
     font-size: 20px;
+    width: 100%;
+    height: 3rem;
+    text-overflow: ellipsis;
+
+
 `
 const Price = styled.div`
     color: teal;
 `
 
 const DescriptionContainer = styled.div`
+    position: relative;
     margin: 30px;
     display: grid;
     grid-template-row: 1fr 1fr 1fr;
@@ -35,17 +41,22 @@ const Container = styled.div`
     grid-template-rows: 1fr 1fr;
     background-color: white;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+    overflow: hidden;
     
 `
 const Button = styled.div`
     width: 80%;
-    height: 100%;
-    background-color: grey;    
+    height: 40px;
+    color: white;
+    background-color: #1e1e1e;    
     user-select: none;
+    cursor: pointer;
     display: grid;
     justify-items: center;
     align-items: center;
-    border-radius: 2px;
+    border-radius: 4px;
+    font-size: 2rem;
+
 `
 
 export default function TitleCard({title, image, price, amount, addItem, subItem}){

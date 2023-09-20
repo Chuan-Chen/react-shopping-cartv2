@@ -7,8 +7,8 @@ const Page = styled.div`
     grid-auto-rows: 400px;
     gap: 40px;
     height: 100%;
-    widht: 100%;
-    margin: 40px;
+    margin: 2rem;
+    
 `
 
 const Container = styled.div`

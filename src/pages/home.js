@@ -24,9 +24,9 @@ const ExploreButton = styled.button`
     border: none;
     border-radius: 4px;
     font-size: 1.4em;
-    align-self: start;
-    justify-self: center;
     cursor: pointer;  
+    justify-self: start;
+    align-self: center;
     box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
     animation: ${Hop} 2s infinite ease-in-out; 
     transition: background-color 0.3s linear;
@@ -58,7 +58,10 @@ export default function home(){
         <Page>
             <HomeLogo src = {Logo} alt = "homepage logo"></HomeLogo>
             <Divider></Divider>
-            <Link to = "/shop" style = {{display: 'grid', height: '100%', width: '100%', textDecoration: 'none'}}><ExploreButton>Explore</ExploreButton></Link>
+            
+            <div style = {{height: '100%', width: '100%', display: 'grid', justifyContent: 'center', alignContent: 'start', gridAutoFlow: 'column'}}>
+                <Link to = "/shop" style = {{textDecoration: 'none'}}><ExploreButton>Explore</ExploreButton></Link>
+            </div>
         </Page>
     )
 }
