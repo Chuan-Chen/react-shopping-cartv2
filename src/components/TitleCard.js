@@ -4,12 +4,16 @@ const Title = styled.div`
     font-size: 20px;
     width: 100%;
     height: 3rem;
+    overflow: hidden;
     text-overflow: ellipsis;
-
-
+    font-weight: bold;
+    white-space: nowrap;
 `
 const Price = styled.div`
     color: teal;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: .6fr 3fr;
 `
 
 const DescriptionContainer = styled.div`
@@ -45,7 +49,7 @@ const Container = styled.div`
     
 `
 const Button = styled.div`
-    width: 80%;
+    width: 100%;
     height: 40px;
     color: white;
     background-color: #1e1e1e;    
@@ -56,7 +60,13 @@ const Button = styled.div`
     align-items: center;
     border-radius: 4px;
     font-size: 2rem;
-
+    transition: background-color 0.3s linear;
+    &:hover{
+        box-shadow: 0px 15px 35px -5px rgba(23, 53, 87, 0.59);
+        background: white;
+        color: black;
+        text-shadow: 0px 0px 10px white;
+    }
 `
 
 export default function TitleCard({title, image, price, amount, addItem, subItem}){
@@ -68,11 +78,11 @@ export default function TitleCard({title, image, price, amount, addItem, subItem
                 <Image src = {image}></Image>
             </ImageContainer>
             <DescriptionContainer>
-                <Title>{title}</Title> 
-                <Price>${price}</Price>
-                <div style = {{display: 'grid', justifyItems: 'center', gap: '2px', gridAutoFlow: 'column'}}>
+                <Title title={title}>{title}</Title> 
+                <Price>Price: <div style = {{fontSize: '1.2rem'}}>${price}</div></Price>
+                <div style = {{display: 'grid', justifyItems: 'center', gap: '4px', gridAutoFlow: 'column'}}>
                     <Button onClick={()=>{ addItem([title, price, image, 1]);}}>+</Button>
-                    <div>{amount}</div>
+                    
                     <Button onClick={()=>{ subItem([title, price, image, 1]);}}>-</Button>
                 </div>
             </DescriptionContainer>

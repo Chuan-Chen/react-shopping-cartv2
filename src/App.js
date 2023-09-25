@@ -15,12 +15,12 @@ const url = 'https://fakestoreapi.com/products';
 const Page = styled.div`
   font-family: 'Lato', sans-serif;
   background-color: #f2f2f4;
-
+  height: 100%;
+  overflow-y: ${props => (props.overflow ? "hidden" : "none")};
 `
 
 const Logo = styled.div`
   height: 4rem;
-  width: 100%;
   display: grid;
   align-items: center;
 `
@@ -31,12 +31,19 @@ const Header = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #babab6;
+  @media (max-width: 800px){
+    grid-auto-flow: row;
+    
+  }
 `
 
 const NavBar = styled.div`
   display: grid;
   grid-template-columns: 1fr .5fr .5fr .5fr .2fr .5fr;
   gap: 10px;
+  @media (max-width: 800px){
+    grid-template-columns: 1fr;
+  }
 `
 const NavItem = styled.div`
   display: flex;
@@ -57,6 +64,10 @@ const NavItem = styled.div`
     color: #228a7d;
   }
 
+  @media(max-width: 800px){
+    display: none;
+  }
+
 `
 
 const PageBody = styled.div`
@@ -68,8 +79,14 @@ const Divider = styled.div`
   background-color: #babab6;
   width: 2px;  
   justify-self: center;
+  @media (max-width: 800px){
+    display: none;
+  }
 `
 
+const Wrapper = styled.div`
+  width: 100%;
+`
 
 function App() {
 
@@ -165,16 +182,19 @@ function App() {
     <Page>
       <ShoppingCartPage display = {display} displayHandler={displayHandler} cartItems = {cartItems} total = {total} addItem = {addItem} subItem = {subItem}></ShoppingCartPage>
       <Header>
-        <Link to = "/home">
-        <Logo>
-          <img src = {LogoIcon} style = {{height: '1.5rem', width: 'auto', marginLeft: '1rem'}} alt = 'logo'></img>
-        </Logo>
-        </Link>
+        <Wrapper>
+          <Link to = "/home">
+            <Logo> 
+              <img src = {LogoIcon} style = {{height: '1.5rem', width: 'auto', marginLeft: '1rem'}} alt = 'logo'></img>
+            </Logo>
+          </Link>
+        </Wrapper>
+        
         <NavBar>
           <div></div>
-          <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Home</NavItem></Link>
-          <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>Shop</NavItem></Link>
-          <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}><NavItem>About</NavItem></Link>
+          <NavItem><Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}>Home</Link></NavItem>
+          <NavItem><Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}>Shop</Link></NavItem>
+          <NavItem><Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}>About</Link></NavItem>
           <Divider></Divider>
           <ShoppingCart cartCounter = {cartCounter} clickManager = {displayHandler}></ShoppingCart>
         </NavBar>
