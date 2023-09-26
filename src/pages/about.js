@@ -36,9 +36,17 @@ const Image = styled.img`
 `
 
 const RightWrapperInner = styled.div`
+<<<<<<< HEAD
     width: 100%;
     height: 100%;
     border: 1px solid black;
+=======
+    width: 80%;
+    height: 80%;
+    border: 1px solid black;
+    align-self: center;
+    justify-self: center;
+>>>>>>> 8cd807f22e0580ce3942ad0588766a2917ddee98
 `
 
 

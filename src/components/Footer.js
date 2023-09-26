@@ -3,7 +3,6 @@ import styled from "styled-components"
 
 const FooterStyle = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
-    
     font-family: 'Noto Sans Mono', monospace;
     bottom: 0;
     left: 0;

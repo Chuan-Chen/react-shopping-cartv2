@@ -42,8 +42,11 @@ const Divider = styled.div`
     width: 80%;
     height 1px;
     background-color: #babab6;
-
+    @media (max-width: 800px){
+        display: hidden;
+    }
 `
+
 const HomeLogo = styled.img`
     align-self: end;
     border-radius: 4px;
@@ -51,9 +54,16 @@ const HomeLogo = styled.img`
     width: 50vw;
     box-shadow: 0px 15px 35px -5px rgba(144, 173, 187, 0.49);
     @media (max-width: 800px){
+<<<<<<< HEAD
         width: 90vw;
         height: auto;
         object-fit: contain;
+=======
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        overflow: hidden;
+>>>>>>> 8cd807f22e0580ce3942ad0588766a2917ddee98
     }
 
 `
