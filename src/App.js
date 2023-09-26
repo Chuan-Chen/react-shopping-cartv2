@@ -31,7 +31,8 @@ const Header = styled.div`
   align-items: center;
   border-bottom: 1px solid #babab6;
   @media (max-width: 800px){
-    grid-auto-flow: row;
+    display: flex;
+    
     
   }
 `
@@ -133,9 +134,6 @@ function App() {
         return;
       }
     }
-    setCartItems([...cartItems, Item])
-    setTotal(getTotal(cartItems));
-    decrementCartCounter();
   }
 
   const getTotal = (array) => {
@@ -156,8 +154,6 @@ function App() {
   const displayHandler = () => {
     setDisplay(!display);
   }
-
-  
 
   const fetchData = ()=>{
     try{
