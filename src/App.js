@@ -212,7 +212,7 @@ function App() {
       </Routes>
     </PageBody>
     
-    <Footer/>
+    <Footer></Footer>
     </Page>
   
   );
