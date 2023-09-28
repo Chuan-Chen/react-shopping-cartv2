@@ -4,7 +4,9 @@ import Error from "./pages/error"
 import Shop from "./pages/shop"
 import Home from "./pages/home"
 import About from "./pages/about"
+import Details from "./pages/details"
 import ShoppingCartPage from "./pages/ShoppingCartPage";
+import HamburgerIcon from "./components/HamburgerIcon"
 import Footer from "./components/Footer";
 import styled from "styled-components";
 import ShoppingCart from "./components/ShoppingCart";
@@ -15,36 +17,38 @@ const url = 'https://fakestoreapi.com/products';
 const Page = styled.div`
   font-family: 'Lato', sans-serif;
   background-color: #f2f2f4;
-  overflow-y: ${props => (props.overflow ? "hidden" : "none")};
+  
 `
 
 const Logo = styled.div`
   height: 4rem;
   display: grid;
   align-items: center;
+  width: 100%;
 `
 
 const Header = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #babab6;
   @media (max-width: 800px){
-    display: flex;
-    
     
   }
 `
 
 const NavBar = styled.div`
   display: grid;
-  grid-template-columns: 1fr .5fr .5fr .5fr .2fr .5fr;
+  grid-template-columns:  .5fr .5fr .5fr .2fr .5fr;
   gap: 10px;
   @media (max-width: 800px){
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr .5fr 1fr;
   }
 `
+
 const NavItem = styled.div`
   display: flex;
   align-items: center;
@@ -54,47 +58,91 @@ const NavItem = styled.div`
   width: 100%;
   cursor: pointer;
   font-weight: bold;
-  user-select: none;
-  //box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
   &:hover{
     color: #2a9d8f;
     border: 1px solid #2a9d8f
   }
   &:active{
-    color: #228a7d;
+    color: #228a7dt: bold;
+    user-select: none;
+    //box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
   }
 
   @media(max-width: 800px){
     display: none;
   }
-
 `
 
 const PageBody = styled.div`
   height: 100%;
   width: 100%;
+  display: ${props => props.d ? 'block' : 'none'};
 `
 
 const Divider = styled.div`
   background-color: #babab6;
   width: 2px;  
   justify-self: center;
-  @media (max-width: 800px){
-    display: none;
-  }
 `
 
 const Wrapper = styled.div`
-  width: 100%;
+width: fit-content;
+`
+
+const Mobile = styled.div`
+  >* {
+    background-color: #b0d2e3;
+    width: 95vw;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    :hover{
+      background-color: #89a4b6; 
+    }
+
+  };
+  height: ${props => props.height + "px;"};
+  transition: height 0.3s linear;
+
+  gap: 1px;
+  margin: 10px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  visibility: ${props => {if(props.height === 0){return "hidden"}else{return "visible"}}};
+  @media(min-width: 800px){
+    display: none;
+  }
+  
+  
 `
 
 function App() {
-
   const [data, setData] = useState([]);
   const [display, setDisplay] = useState(false);
   const [cartCounter, setCartCounter] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0);
+  const [mobileMenu, setMobileMenu] = useState(0);
+  const [detailDisplay, setDetailDisplay] = useState(false);
+  const [detailObject, setDetailObject] = useState({});
+
+  const changeDetailDisplay = (object) => {
+    setDetailDisplay(!detailDisplay);
+    setDetailObject(object);
+    return detailDisplay;
+  }
+
+  const mobileMenuManager = () => {
+    if(mobileMenu === 0){
+      setMobileMenu(200);
+    }else{
+      setMobileMenu(0);
+    }
+  }
+
 
   const incrementCartCounter = () => {
     setCartCounter(cartCounter + 1);
@@ -104,6 +152,7 @@ function App() {
     setCartCounter(cartCounter - 1);
   }
   
+
   const addItem = (Item) => {
     for(let i = 0; i < cartItems.length; i++){
       if(Item[0] === cartItems[i][0]){
@@ -161,7 +210,6 @@ function App() {
         res.json().then(
         result => {
             setData(result)
-            console.log(result)
         }, 
         error => {
           setData('error')
@@ -172,41 +220,50 @@ function App() {
       }
     }
 
+  const exitDetailPage = () => {
+    if(detailDisplay){
+      setDetailDisplay(!detailDisplay);
+    }
+  }
+
+
   return (
   
     <Page>
-      <ShoppingCartPage display = {display} displayHandler={displayHandler} cartItems = {cartItems} total = {total} addItem = {addItem} subItem = {subItem}></ShoppingCartPage>
+      <a href = "#top" style = {{display: 'none'}}> </a>
+      <ShoppingCartPage display = {display} displayHandler={displayHandler} cartItems = {cartItems} total = {total} addItem = {addItem} subItem = {subItem} detailDisplayHandler = {changeDetailDisplay}></ShoppingCartPage>
       <Header>
         <Wrapper>
-          <Link to = "/home">
-            <Logo> 
-              <img src = {LogoIcon} style = {{height: '1.5rem', width: 'auto', marginLeft: '1rem'}} alt = 'logo'></img>
+            <Logo onClick={exitDetailPage}> 
+            <Link to = "/home"><img src = {LogoIcon} style = {{height: '1.5rem', width: 'auto', marginLeft: '1rem'}} alt = 'logo'></img></Link>
             </Logo>
-          </Link>
         </Wrapper>
-        
         <NavBar>
-          <div></div>
-          <NavItem><Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}>Home</Link></NavItem>
-          <NavItem><Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}>Shop</Link></NavItem>
-          <NavItem><Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}>About</Link></NavItem>
+          <NavItem onClick={exitDetailPage}><Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}>Home</Link></NavItem>
+          <NavItem onClick={exitDetailPage}><Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}>Shop</Link></NavItem>
+          <NavItem onClick={exitDetailPage}><Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}>About</Link></NavItem>
+          <HamburgerIcon clickHandler = {mobileMenuManager}></HamburgerIcon>
           <Divider></Divider>
           <ShoppingCart cartCounter = {cartCounter} clickManager = {displayHandler}></ShoppingCart>
         </NavBar>
       </Header>
-
-    <PageBody>
-    
+    <Mobile height = {mobileMenu}>
+      <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}>Shop</Link>
+      <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}>About</Link>
+      <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}>Home</Link>
+    </Mobile>
+    <Details isDisplayed = {detailDisplay} clickHandler = {changeDetailDisplay} object = {detailObject} addItem = {addItem} subItem = {subItem}/>
+    <PageBody d = {!detailDisplay}>
       <Routes>
         <Route index element={<Home/>} />
-        <Route path = "/shop" element={<Shop data = {data} add = {incrementCartCounter} sub = {decrementCartCounter} addItem = {addItem} subItem = {subItem}/>}/>
+        <Route path = "/shop" element={<Shop data = {data} add = {incrementCartCounter} sub = {decrementCartCounter} addItem = {addItem} subItem = {subItem} detailHandler = {changeDetailDisplay}/>}/>
         <Route path = "/about" element = {<About/>}/>
         <Route path = "/" element = {<Home/>}>
         <Route path = "*" element={<Error/>}/>
         </Route>
       </Routes>
     </PageBody>
-    
+     
     <Footer></Footer>
     </Page>
   

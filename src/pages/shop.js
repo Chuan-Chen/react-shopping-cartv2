@@ -8,6 +8,7 @@ const Page = styled.div`
     gap: 40px;
     height: 100%;
     margin: 2rem;
+    position: relative;
     
 `
 
@@ -17,12 +18,12 @@ const Container = styled.div`
     margin: auto;
 `
 
-export default function shop({data, addItem, subItem}){
+export default function shop({data, addItem, subItem, detailHandler}){
     return (
         <Page>
                 {data.map((e, counter = 0) => 
                 <Container key = {"container"+counter}>
-                    <TitleCard key = {counter++} title = {e.title} price = {e.price} image = {e.image} addItem = {addItem} subItem = {subItem}/>
+                    <TitleCard key = {counter++} title = {e.title} price = {e.price} image = {e.image} addItem = {addItem} subItem = {subItem} object = {e} detailHandler = {detailHandler}/>
                 </Container>
                 )}
         </Page>

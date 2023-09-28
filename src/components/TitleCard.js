@@ -1,5 +1,4 @@
 import styled from "styled-components"
-
 const Title = styled.div`
     font-size: 20px;
     width: 100%;
@@ -29,6 +28,7 @@ const Image = styled.img`
     max-height: 20vh;
     justify-self: center;
     object-fit: contain;
+    cursor: pointer;
 `
 
 const ImageContainer = styled.div`
@@ -69,13 +69,13 @@ const Button = styled.div`
     }
 `
 
-export default function TitleCard({title, image, price, amount, addItem, subItem}){
+export default function TitleCard({title, image, price, amount, addItem, subItem, object, detailHandler}){
 
 
     return (
         <Container>
             <ImageContainer>
-                <Image src = {image}></Image>
+            <Image title = {`${title} product page.`} src = {image} onClick={()=>{detailHandler(object); window.location.href='#top';}} ></Image>
             </ImageContainer>
             <DescriptionContainer>
                 <Title title={title}>{title}</Title> 

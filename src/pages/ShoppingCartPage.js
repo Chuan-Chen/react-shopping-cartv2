@@ -21,16 +21,16 @@ const ShoppingSideBar = styled.div`
 
 const ShoppingBarToggle = styled.div`
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     height: 100vh;
     width: 100vw;
     backdrop-filter: blur(10px);
+    
 `
 
 const ShoppingXButton = styled.button`
     background: white;
     justify-self: end;
-    
     height: 2rem;
     width: 2rem;
     border: 1px solid;
@@ -92,7 +92,7 @@ const Top = styled.div`
     border-bottom: 1px solid black;
 `
 
-export default function ShoppingCartPage({display, displayHandler, cartItems, total, addItem, subItem}){
+export default function ShoppingCartPage({display, displayHandler, cartItems, total, addItem, subItem, detailDisplayHandler}){
     return (
     <Page view={display}>
         <ShoppingBarToggle onClick={displayHandler}></ShoppingBarToggle>
@@ -108,7 +108,7 @@ export default function ShoppingCartPage({display, displayHandler, cartItems, to
                     cartItems.map((item, count) => {
                     if(item[3] !== 0){
                         return (
-                        <CartTitleCard key = {count++} title = {item[0]} price = {item[1]} amount = {item[3]} image = {item[2]} addItem={addItem} subItem={subItem}/>
+                        <CartTitleCard key = {count++} title = {item[0]} price = {item[1]} amount = {item[3]} image = {item[2]} addItem={addItem} subItem={subItem} object = {item} detailDisplayHandler = {detailDisplayHandler}/>
                         )
                     }
                     return <></>

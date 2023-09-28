@@ -12,6 +12,7 @@ const FooterStyle = styled.div`
     gap: 15px;
     justify-content: center;
     align-items: center;
+    height: 26px;
     width: 100%;
     background-color: #1e1e1e;
     padding-top: .8rem;
@@ -29,13 +30,18 @@ const FooterA = styled.a`
 `;
 
 
-
 export default class Footer extends React.Component{
+
+    constructor(){
+        super();
+        this.date = new Date();
+    }
+
     render(){
         return(
             <FooterStyle>
                 <div>
-                    Copyright © 2022 <FooterA href = "https://github.com/Chuan-Chen">Chuan Chen</FooterA>
+                    Copyright © {this.date.getFullYear()} <FooterA href = "https://github.com/Chuan-Chen">Chuan Chen</FooterA>
                 </div>
             </FooterStyle>
         )

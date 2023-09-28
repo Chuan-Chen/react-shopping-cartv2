@@ -44,7 +44,7 @@ const Bottom = styled.div`
     align-items: center;
 `
 
-export default function CartTitleCard({title, price, amount, image, addItem, subItem}){
+export default function CartTitleCard({title, price, amount, image,object, addItem, subItem, detailDisplayHandler}){
 
     return (
         <Item>
