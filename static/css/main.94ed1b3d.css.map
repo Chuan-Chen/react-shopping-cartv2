@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.94ed1b3d.css","mappings":"AAAA,gBAGI,2BAA+B,CAD/B,QAAW,CADX,UAGJ","sources":["index.css"],"sourcesContent":["#root, html, body{\r\n    width: 100%;\r\n    margin: 0px;\r\n    font-family: 'Lato', sans-serif;\r\n}"],"names":[],"sourceRoot":""}
