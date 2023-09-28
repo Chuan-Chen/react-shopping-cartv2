@@ -248,9 +248,9 @@ function App() {
         </NavBar>
       </Header>
     <Mobile height = {mobileMenu}>
-      <Link to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}>Shop</Link>
-      <Link to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}>About</Link>
-      <Link to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}>Home</Link>
+      <Link onClick={exitDetailPage} to = "/shop" style = {{textDecoration: 'none', color: 'inherit'}}>Shop</Link>
+      <Link onClick={exitDetailPage} to = "/about"style = {{textDecoration: 'none', color: 'inherit'}}>About</Link>
+      <Link onClick={exitDetailPage} to = "/home" style = {{textDecoration: 'none', color: 'inherit'}}>Home</Link>
     </Mobile>
     <Details isDisplayed = {detailDisplay} clickHandler = {changeDetailDisplay} object = {detailObject} addItem = {addItem} subItem = {subItem}/>
     <PageBody d = {!detailDisplay}>
